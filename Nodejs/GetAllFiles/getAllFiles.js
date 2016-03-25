@@ -45,7 +45,7 @@ function geAllFiles(myip, myport, mypath, myjwt)
 			{
 				if(obj[i].type === 'folder')
 				{
-					cmdStr = 'mkdir -p .' + obj[i].path + '_' + obj[i].uuid;
+					cmdStr = 'mkdir -p .' + obj[i].path;
 					exec(cmdStr, function(err){
 						if(err) {
 							console.log('Mkdir Folder Error!');
@@ -59,7 +59,7 @@ function geAllFiles(myip, myport, mypath, myjwt)
 			{
 				if(obj[i].type === 'file')
 				{
-					cmdStr = 'touch .' + obj[i].path + '_' + obj[i].uuid;
+					cmdStr = 'touch .' + obj[i].path;
 					exec(cmdStr, function(err){
 						if(err) {
 							console.log('Touch File Error!');
