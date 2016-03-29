@@ -6,7 +6,7 @@ var cmdStr = '';
 var data = '';
 var root = '';
 
-function dealRootData(data)
+function dealRootData(data, path)
 {
 	var obj = JSON.parse(data);
 
@@ -14,14 +14,14 @@ function dealRootData(data)
 	{
 		root = obj.path
 
-		cmdStr = 'rm -rf .' + root;
+		cmdStr = 'rm -rf ./' + root;
 		exec(cmdStr, function(err){
 			if(err) {
 				console.log('Rm root Error!');
 			}
 		});
 
-		cmdStr = 'mkdir .' + root;
+		cmdStr = 'mkdir ./' + root;
 		exec(cmdStr, function(err){
 			if(err) {
 				console.log('Mkdir root Error!');
@@ -32,7 +32,7 @@ function dealRootData(data)
 	{
 		if(obj.type === 'folder')
 		{
-			cmdStr = 'mkdir -p .' + obj.path;
+			cmdStr = 'mkdir -p ./' + path + '/' + obj.attribute.name;
 			exec(cmdStr, function(err){
 				if(err) {
 					console.log('Mkdir Folder Error!');
@@ -43,7 +43,7 @@ function dealRootData(data)
 
 		if(obj.type === 'file')
 		{
-			cmdStr = 'touch .' + obj.path;
+			cmdStr = 'touch ./' + path + '/' + obj.attribute.name;
 			exec(cmdStr, function(err){
 				if(err) {
 					console.log('Touch File Error!');
@@ -57,7 +57,7 @@ function dealRootData(data)
 	{
 		if (obj.children[i].length !== 0)
 		{
-			dealRootData(JSON.stringify(obj.children[i]));
+			dealRootData(JSON.stringify(obj.children[i]), path + '/' + obj.attribute.name);
 		}
 	}
 }
@@ -107,7 +107,9 @@ function getDataFromGetHttpWithJWT(reqIP, reqPort, reqPath, reqJwt)
 			{
 				if (obj.children[i].length !== 0)
 				{
-					dealRootData(JSON.stringify(obj.children[i]));
+					filename = obj.attribute.name;
+					
+					dealRootData(JSON.stringify(obj.children[i]), filename);
 				}
 			}
 
