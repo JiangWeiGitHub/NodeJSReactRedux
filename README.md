@@ -23,10 +23,10 @@
   ```
   
 ##### Use Linux Binaries
-  + Create a new folder
+  + Create a new folder<p>
   `mkdir /home/node`<p>
 
-  + Enter into the folder
+  + Enter into the folder<p>
   `cd /home/node`<p>
 
   + Download 64 bit nodejs v6.2.0 linux binaries<p>
@@ -37,4 +37,4 @@
 
   + Move all files into system path<p>
   `\mv -r /home/node/node-v6.2.0/* /`<p>
-  `PS: You can not use copy method.`<p>
+  `PS: Copy method is not work here.`<p>
