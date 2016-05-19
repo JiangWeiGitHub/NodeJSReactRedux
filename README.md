@@ -6,6 +6,7 @@
 + Platform: Ubuntu 16.04 64bit<p>
 + Software: wget tar xz-utils<p>
 + Nodejs Version: 6.2.0<p>
++ Official Link: [*Click*](https://nodejs.org/en/)<p>
 
 ##### Use Source Code<p>
   + Download nodejs v6.2.0 source code<p>
@@ -35,8 +36,8 @@
   `wget https://nodejs.org/dist/v6.2.0/node-v6.2.0-linux-x64.tar.xz`<p>
 
   + Untar<p>
-  `tar -Jxvf node-v6.2.0.tar.gz`<p>
+  `tar -Jxvf node-v6.2.0-linux-x64.tar.xz`<p>
 
   + Move all files into system path<p>
-  `\mv -r /home/node/node-v6.2.0/* /`<p>
+  `\mv -r /home/node/node-v6.2.0-linux-x64/* /`<p>
   `PS: Copy method is not work here.`<p>
