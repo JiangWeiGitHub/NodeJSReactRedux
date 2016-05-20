@@ -20,9 +20,9 @@
 
   + make & install Node.js to your system<p>
   ```
-        ./configure
-        make
-        (sudo) make install
+  ./configure
+  make
+  (sudo) make install
   ```
   
 ##### Use Linux Binaries
