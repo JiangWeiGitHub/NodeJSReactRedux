@@ -39,5 +39,5 @@
   `tar -Jxvf node-v6.2.0-linux-x64.tar.xz`<p>
 
   + Move all files into system path<p>
-  `\mv -r /home/node/node-v6.2.0-linux-x64/* /`<p>
-  `PS: Copy method is not work here.`<p>
+  `\cp -r /home/node/node-v6.2.0-linux-x64/* /`<p>
+  `PS: 'mv' method is not work here.`<p>
