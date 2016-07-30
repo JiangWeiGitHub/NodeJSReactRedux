@@ -1,6 +1,8 @@
-let testData = [[1,2,3],[4,5],[6],[7,8,9],[10,11,12,13],[14,15,16],[17,18],[19,20],[21,22,23,24],[25,26],[27],[28,29,30]]
+let testData1 = [[1,2,3],[4,5],[6],[7,8,9],[10,11,12,13],[14,15,16],[17,18],[19,20],[21,22,23,24],[25,26],[27],[28,29,30]]
 
-let test = [1,2,3,4,5,6,7,8,9,10]
+let testData2 = [1,2,3,4,5,6,7,8,9,10]
+
+let testData3 = []
 
 function reduceArray(prev, current, index)
 {
@@ -17,9 +19,11 @@ function reduceArray(prev, current, index)
   return prev;
 }
 
-let number = test.reduce(reduceArray, [])
+let number = testData2.reduce(reduceArray, [])
 
-let array = testData.reduce(reduceArray, [])
+let array = testData1.reduce(reduceArray, [])
+
+let empty = testData3.reduce(reduceArray, [])
 
 console.log("")
 console.log("Number:")
@@ -30,5 +34,9 @@ console.log("")
 console.log("Array:")
 console.log(array)
 console.log("")
-
+console.log("**********************************************")
+console.log("")
+console.log("Empty:")
+console.log(empty)
+console.log("")
 
