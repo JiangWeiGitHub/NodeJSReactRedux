@@ -4,6 +4,9 @@ let testData2 = [1,2,3,4,5,6,7,8,9,10]
 
 let testData3 = []
 
+//
+// First source code
+//
 // function reduceArray(prev, current, index)
 // {
 //   if(index === 0)
@@ -15,16 +18,38 @@ let testData3 = []
 //   {
 //     index % 5 ? prev[prev.length - 1].push(current) : ( prev.push([]) && prev[prev.length - 1].push(current) )
 //   }
-
+//
 //   return prev;
 // }
 
+//
+// Source code for now
+// Non immutable
+//
 function reduceArray(prev, current, index)
 {
   index % 5 ? prev[prev.length - 1].push(current) : prev.push([current])
 
-  return prev;
+  return prev
 }
+
+//
+// Source code for specialist
+// Immutable with 'concat'
+//
+// function reduceArray(prev, current, index)
+// {
+//   return index % 5 ? prev.slice(0, -1).concat([prev.slice(-1)[0].concat(current)]) : prev.concat([[current]])
+// }
+
+//
+// Source code for specialist
+// Immutable with 'slice'
+//
+// function reduceArray(prev, current, index)
+// {
+//   return index % 5 ? [...prev.slice(0, -1), [...prev.slice(-1).pop(), current]] : [...prev, [current]]
+// }
 
 let number = testData2.reduce(reduceArray, [])
 
