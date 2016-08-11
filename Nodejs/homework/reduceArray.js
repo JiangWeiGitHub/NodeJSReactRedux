@@ -44,7 +44,7 @@ function reduceArray(prev, current, index)
 
 //
 // Source code for specialist
-// Immutable with 'slice'
+// Immutable with 'spread'
 //
 // function reduceArray(prev, current, index)
 // {
