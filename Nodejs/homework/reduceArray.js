@@ -4,17 +4,24 @@ let testData2 = [1,2,3,4,5,6,7,8,9,10]
 
 let testData3 = []
 
+// function reduceArray(prev, current, index)
+// {
+//   if(index === 0)
+//   {
+//     prev.push([])
+//     prev[prev.length - 1].push(current)
+//   }
+//   else
+//   {
+//     index % 5 ? prev[prev.length - 1].push(current) : ( prev.push([]) && prev[prev.length - 1].push(current) )
+//   }
+
+//   return prev;
+// }
+
 function reduceArray(prev, current, index)
 {
-  if(index === 0)
-  {
-    prev.push([])
-    prev[prev.length - 1].push(current)
-  }
-  else
-  {
-    index % 5 ? prev[prev.length - 1].push(current) : ( prev.push([]) && prev[prev.length - 1].push(current) )
-  }
+  index % 5 ? prev[prev.length - 1].push(current) : prev.push([current])
 
   return prev;
 }
