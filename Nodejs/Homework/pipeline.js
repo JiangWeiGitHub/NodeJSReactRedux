@@ -1,10 +1,9 @@
-const pipeline = (...funcs) =>
-  val => funcs.reduce((a, b) => b(a), val)
+const pipeline = (...functionList) => (val => functionList.reduce((former, latter) => latter(former), val))
 
 const plus = a => a + 1
 const mult = a => a * 2
 const double = a => a * a
-const run = pipeline(plus, mult, double)
 
-console.log(run(5))
+console.log(pipeline(plus, mult, double)(5))
 
+// 144
