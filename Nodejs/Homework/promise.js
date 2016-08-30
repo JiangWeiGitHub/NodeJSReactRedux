@@ -12,11 +12,18 @@ function promise(score){
 }
 
 let test = promise(15)
+test.then(function(value){
+    console.log(value)
+  }).catch(function(error){
+    console.log(error)
+  })
 
+/* or
 test.then(function(value){
     console.log(value)
   }, function(error){
     console.log(error)
   })
+*/
 
 console.log("Bottom")
