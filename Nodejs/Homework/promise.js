@@ -11,6 +11,7 @@ function promise(score){
   })
 }
 
+// Good Expression
 let test = promise(15)
 test.then(function(value){
     console.log(value)
@@ -18,7 +19,7 @@ test.then(function(value){
     console.log(error)
   })
 
-/* or
+/* Bad Expression
 test.then(function(value){
     console.log(value)
   }, function(error){
