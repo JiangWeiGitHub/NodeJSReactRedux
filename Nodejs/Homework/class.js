@@ -19,8 +19,15 @@ class Cat extends Animal {
 // test:
 var kitty = new Cat('Kitty');
 var doraemon = new Cat('Bear');
-if ((new Cat('x') instanceof Animal) && kitty && kitty.name === 'Kitty' && kitty.say && typeof kitty.say === 'function' && kitty.say() === 'Hello, Kitty!' && kitty.say === doraemon.say) {
-  alert('Success!');
-} else {
-  alert('Failed!');
+if ((new Cat('x') instanceof Animal)
+     && kitty && kitty.name === 'Kitty'
+     && kitty.say && typeof kitty.say === 'function'
+     && kitty.say() === 'Hello, Kitty!'
+     && kitty.say === doraemon.say)
+{
+  console.log('Success!');
+}
+else
+{
+  console.log('Failed!');
 }
