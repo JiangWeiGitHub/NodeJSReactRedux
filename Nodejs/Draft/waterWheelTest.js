@@ -1,7 +1,7 @@
 import request from 'superagent'
 
 const url = 'http://192.168.5.54'
-const nasUUID = 'a1ce3758-2749-4bd6-890a-4fa905fbe7fe'
+const nasUUID = '2d00d149-8ea2-4ca3-bf26-063674a81c82'
 let linkUUID = ''
 let fileName = 'chi.txt'
 let fileHash = '2a9b0963652a7647780dc13fd37d160720421ce8181dadd530e6a16203832f97'
@@ -111,7 +111,7 @@ async function setTankStatus (url, nasUUID, linkUUID, tankID, newStatus) {
 
 async function deleteTank (url, nasUUID, linkUUID, tankID) {
   return new Promise(function(resolve, reject) {
-    console.log("\n********** Setting Tank Resource Status... **********")
+    console.log("\n********** Deleting Tank ... **********")
     request.delete(`${url}/nas/${nasUUID}/waterwheel/${linkUUID}/${tankID}`)
       .set('Accept', 'application/json')
       .end((err, res) => {
@@ -127,7 +127,7 @@ async function deleteTank (url, nasUUID, linkUUID, tankID) {
 
 async function deleteLink (url, nasUUID, linkUUID) {
   return new Promise(function(resolve, reject) {
-    console.log("\n********** Setting Tank Resource Status... **********")
+    console.log("\n********** Deleting Link ... **********")
     request.delete(`${url}/nas/${nasUUID}/waterwheel/${linkUUID}`)
       .set('Accept', 'application/json')
       .end((err, res) => {
@@ -173,8 +173,21 @@ connect(url, nasUUID).then( function (value) {
         .then( function (value) {
           setTankStatus (url, nasUUID, linkUUID, tankID, newStatus).then( function (value) {
             console.log("Return Text: " + value)
-
-            return value
+          })
+          .then( function (value) {
+            deleteTank (url, nasUUID, linkUUID, tankID).then( function (value) {
+              console.log("Return Text: " + value)
+            })
+            .then( function (value) {
+              getTank (url, nasUUID, linkUUID).then( function (value) {
+                console.log("Return Text: " + value)
+              })
+              .then( function (value) {
+                deleteLink (url, nasUUID, linkUUID).then( function (value) {
+                  console.log("Return Text: " + value)
+                })
+              })
+            })
           })
         })
       })
