@@ -5,6 +5,9 @@ const nasUUID = 'a1ce3758-2749-4bd6-890a-4fa905fbe7fe'
 let linkUUID = ''
 let fileName = 'chi.txt'
 let fileHash = '2a9b0963652a7647780dc13fd37d160720421ce8181dadd530e6a16203832f97'
+let tankID = ""
+let tankResourceID = ""
+let newStatus = 'error'
 
 async function connect(url, nasUUID) {
   return new Promise(function(resolve, reject) {
@@ -89,6 +92,55 @@ async function uploadFile (url, nasUUID, linkUUID, tankID, tankResourceID) {
   })
 }
 
+async function setTankStatus (url, nasUUID, linkUUID, tankID, newStatus) {
+  return new Promise(function(resolve, reject) {
+    console.log("\n********** Setting Tank Resource Status... **********")
+    request.patch(`${url}/nas/${nasUUID}/waterwheel/${linkUUID}/${tankID}`)
+      .set('Accept', 'application/json')
+      .send({'status':newStatus})
+      .end((err, res) => {
+        if (err)
+          return resolve(err)
+
+        console.log("Return Code: " + res.statusCode)
+
+        resolve(res.text)
+      })
+  })
+}
+
+async function deleteTank (url, nasUUID, linkUUID, tankID) {
+  return new Promise(function(resolve, reject) {
+    console.log("\n********** Setting Tank Resource Status... **********")
+    request.delete(`${url}/nas/${nasUUID}/waterwheel/${linkUUID}/${tankID}`)
+      .set('Accept', 'application/json')
+      .end((err, res) => {
+        if (err)
+          return resolve(err)
+
+        console.log("Return Code: " + res.statusCode)
+
+        resolve(res.text)
+      })
+  })
+}
+
+async function deleteLink (url, nasUUID, linkUUID) {
+  return new Promise(function(resolve, reject) {
+    console.log("\n********** Setting Tank Resource Status... **********")
+    request.delete(`${url}/nas/${nasUUID}/waterwheel/${linkUUID}`)
+      .set('Accept', 'application/json')
+      .end((err, res) => {
+        if (err)
+          return resolve(err)
+
+        console.log("Return Code: " + res.statusCode)
+
+        resolve(res.text)
+      })
+  })
+}
+
 connect(url, nasUUID).then( function (value) {
   console.log("Return Text: " + value)
 })
@@ -100,18 +152,31 @@ connect(url, nasUUID).then( function (value) {
   })
   .then( function (value) {
     linkUUID = value.slice(1,-1)
-    addNewRequest (url, nasUUID, linkUUID, fileHash).then( function (value) {
+    getTank (url, nasUUID, linkUUID).then( function (value) {
       console.log("Return Text: " + value)
-
-      return value
     })
+    
     .then( function (value) {
-      let tankList = JSON.parse(value)
-      let tankID = tankList.uuid
-      let tankResourceID = tankList.resource[0].id
-
-      uploadFile (url, nasUUID, linkUUID, tankID, tankResourceID).then( function (value) {
+      addNewRequest (url, nasUUID, linkUUID, fileHash).then( function (value) {
         console.log("Return Text: " + value)
+
+        return value
+      })
+      .then( function (value) {
+        let tankList = JSON.parse(value)
+        tankID = tankList.uuid
+        tankResourceID = tankList.resource[0].id
+
+        uploadFile (url, nasUUID, linkUUID, tankID, tankResourceID).then( function (value) {
+          console.log("Return Text: " + value)
+        })
+        .then( function (value) {
+          setTankStatus (url, nasUUID, linkUUID, tankID, newStatus).then( function (value) {
+            console.log("Return Text: " + value)
+
+            return value
+          })
+        })
       })
     })
   })
