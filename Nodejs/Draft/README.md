@@ -1,9 +1,8 @@
 # Deploy this test project
 
-1. create a new folder which contains `src` folder & `lib` folder
-2. go into this folder
-3. `npm init`
-4. `npm install superagent babel-cli`
-5. copy these three files into `src` folder
-6. `babel src -d lib`
-7. `node ./lib/upload.js`
+1. git clone https://github.com/JiangWeiGitHub/NodeJSReactRedux.git
+2. go into `Nodejs/Draft` folder
+3. `npm install`
+4. `npm run build`
+5. `node ./lib/upload.js`
+6. download.js need to be modified
