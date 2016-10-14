@@ -1,4 +1,4 @@
-# Deploy this test project
+# WaterWheel Project use only
 
 1. git clone https://github.com/JiangWeiGitHub/NodeJSReactRedux.git
 2. go into `Nodejs/Draft` folder
